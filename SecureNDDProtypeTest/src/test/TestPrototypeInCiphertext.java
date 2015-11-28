@@ -40,6 +40,8 @@ import util.PrintTool;
  * 
  * The thread is in "L" level, i.e., each column is checking in a thread.
  * 
+ * Note: here the ground truth is determined by a given plaintext's threshold.
+ * 
  * @author Helei Cui
  * 
  * Modified by CHU Yilei on 2015 June 20
@@ -49,7 +51,6 @@ import util.PrintTool;
  * 			For each query's result list (after voting), examine top 1, top 5, top 10, top 20, top 30... respectively
  * 			to get the average true positive rate.
  * 
- * Note: here the ground truth is determined by a given plaintext's threshold.
  * 
  * Modified by Helei CUI on 2015 Nov. 28
  * Update: finalize the code for prototype demonstration.
@@ -187,10 +188,10 @@ public class TestPrototypeInCiphertext {
 					.print("\n\n----------------------- Root Menu -----------------------\n"
 							+ "Please select an operation:\n"
 							+ "[1]  query test;\n"
-							+ "[2]  analyze recall and precision;\n"
-							+ "[3]  analyze top-k;\n"
-							+ "[4]  analyze CDF;\n"
-							+ "[5]  average located items;\n"
+							//+ "[2]  analyze recall and precision;\n"
+							+ "[2]  analyze top-k;\n"
+							+ "[3]  analyze CDF;\n"
+							+ "[4]  average located items;\n"
 							//+ "[6]  throughput;\n"
 							+ "[QUIT] quit system.\n\n"
 							+ "--->");
@@ -207,17 +208,17 @@ public class TestPrototypeInCiphertext {
 						System.out.println("Quit!");
 
 						break;
-					} else if (Integer.parseInt(inputStr) > 5
+					} else if (Integer.parseInt(inputStr) > 4
 							|| Integer.parseInt(inputStr) < 1) {
 
-						System.out.println("Warning: operation type should be limited in [1, 5], please try again!");
+						System.out.println("Warning: operation type should be limited in [1, 4], please try again!");
 
 						continue;
 					} else {
 						operationType = Integer.parseInt(inputStr);
 					}
 				} catch (NumberFormatException e) {
-					System.out.println("Warning: operation type should be limited in [1, 5], please try again!");
+					System.out.println("Warning: operation type should be limited in [1, 4], please try again!");
 
 					continue;
 				}
@@ -230,9 +231,6 @@ public class TestPrototypeInCiphertext {
 			switch (operationType) {
 			case SysConstant.OPERATION_QUERY:
 				queryInCiphertext(queryRecords, rawRecords, detector, repo, thirdParty, params, lsh, lshL, threshold, isCached);
-				break;
-			case SysConstant.OPERATION_ANALYZE:
-				analyzeInCiphertext(queryRecords, rawRecords, detector, repo, params, lsh, lshL, threshold, isCached);
 				break;
 			case SysConstant.OPERATION_ANALYZE_TOP_K:
 				analyzeTopKInCiphertext(queryRecords, rawRecords, detector, repo, params, lsh, lshL, threshold, isCached);
@@ -376,57 +374,6 @@ public class TestPrototypeInCiphertext {
 		}
 	}
 
-	private static void analyzeInCiphertext(List<RawRecord> queryRecords, List<RawRecord> rawDBRecords, User detector, Repository repo, Parameters params, HammingLSH lsh, int lshL, int threshold, boolean isCached) {
-
-		RawRecord queryRecord;
-		
-		float avgGenTokenTime = 0;
-		
-		long avgSearchTime = 0;
-		
-		int avgNumOfCandidate = 0;
-		
-		int queryTimes = 0;
-		
-		for (int i = 0; i < queryRecords.size(); i++) {
-			
-			queryRecord = queryRecords.get(i);
-			
-			System.out.println(++queryTimes);
-			
-			long stOfGenToken = System.currentTimeMillis();
-			// prepare the query message
-			List<Element> Q = new ArrayList<Element>(lshL);
-			
-
-			long[] lshVector = lsh.computeLSH(queryRecord.getValue());
-			
-			for (int j = 0; j < lshL; j++) {
-				
-				Element t = params.h1Pre.pow(BigInteger.valueOf(lshVector[j])).powZn(detector.getKeyV());
-				
-				Q.add(t);
-			}
-			
-			long etOfGenToken = System.currentTimeMillis();
-			
-			long time1 = System.currentTimeMillis();
-			
-			Map<Integer, Integer> searchResult = repo.secureSearch(detector.getUid(), Q, isCached);
-			
-			long time2 = System.currentTimeMillis();
-
-			avgGenTokenTime += etOfGenToken - stOfGenToken;
-			
-			avgSearchTime += time2 - time1;
-			
-			avgNumOfCandidate += searchResult.size();
-		}
-		
-		System.out.println("\nAverage genToken time is : " + avgGenTokenTime/(float)queryTimes + " ms");
-		System.out.println("Average search time is   : " + avgSearchTime/(float)queryTimes + " ms");
-		System.out.println("Average candidate size   : " + avgNumOfCandidate/queryTimes);
-	}
 	
 	private static void analyzeTopKInCiphertext(List<RawRecord> queryRecords, List<RawRecord> rawDBRecords, User detector, Repository repo, Parameters params, HammingLSH lsh, int lshL, int threshold, boolean isCached) {
 
@@ -455,9 +402,9 @@ public class TestPrototypeInCiphertext {
 			System.out.println(queryTimes);
 			
 			long stOfGenToken = System.currentTimeMillis();
+			
 			// prepare the query message
 			List<Element> Q = new ArrayList<Element>(lshL);
-			
 
 			long[] lshVector = lsh.computeLSH(queryRecord.getValue());
 			

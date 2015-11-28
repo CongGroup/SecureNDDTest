@@ -1,10 +1,10 @@
-inputPath= /data/fingerprint/
-inputFileName= ahash_fp_jpeg.txt
+inputPath= /home/ubuntu/infocom2016/data/
+dbFileName= ahash_fp_jpeg.txt
 queryFileName= ahash_fp_jpeg_query.txt
 
 numOfLimit= 200
 numOfRepo= 1
-pairingSettingPath= /home/ubuntu/github/SecureNDD/SecureNDDTest/config/d159.properties
+pairingSettingPath= /home/ubuntu/infocom2016/d159.properties
 
 # parameters for Paillier
 bitLength= 1024
@@ -18,3 +18,6 @@ lshDimension= 64
 lshK= 5
 threshold= 10
 #numOfPositive= 10
+
+# indicate whether uses cached index
+isCached= false
