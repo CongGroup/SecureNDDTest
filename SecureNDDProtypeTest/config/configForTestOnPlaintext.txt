@@ -1,0 +1,6 @@
+inputPath= /data/infocom_2016/output/
+inputFileName= ahash_fp_jpeg.txt
+queryFileName= ahash_fp_jpeg_query.txt
+threshold= 10
+numOfLimit= 20000
+numOfPositive= 10

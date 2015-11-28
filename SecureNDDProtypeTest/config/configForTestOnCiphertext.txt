@@ -1,0 +1,20 @@
+inputPath= /data/fingerprint/
+inputFileName= ahash_fp_jpeg.txt
+queryFileName= ahash_fp_jpeg_query.txt
+
+numOfLimit= 200
+numOfRepo= 1
+pairingSettingPath= /home/ubuntu/github/SecureNDD/SecureNDDTest/config/d159.properties
+
+# parameters for Paillier
+bitLength= 1024
+certainty= 64
+
+# parameters for LSH
+lshL= 5
+lshDimension= 64
+
+# the larger K, the more accurate, but the smaller, the more items can be located
+lshK= 5
+threshold= 10
+#numOfPositive= 10
