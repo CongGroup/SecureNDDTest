@@ -36,4 +36,10 @@ This is a prototype demonstration that combines LSH (in Hamming distance) and MK
 
 - The **"TestThroughput.java"** is just used for throughput simulation evaluation.
 
-- The **"TestHammingLSH.java"** is an example that shows how to use our implementation of LSH for Hamming distance.
+- The **"TestHammingLSH.java"** is an example that shows how to use our implementation of LSH in Hamming distance.
+
+### The folder HammingLSH:
+
+To easily get our implementation of LSH in Hamming distance, I move some related codes from our project **SecureNDDProtypeTest** into this folder.
+
+Note that you should modify some of the "import package" info due to their original locations have been changed.
