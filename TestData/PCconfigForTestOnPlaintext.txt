@@ -1,0 +1,6 @@
+inputPath= C:\Users\Helei\Desktop\nddTest\fingerprint\
+dbFileName= phash_fp_jpeg.txt
+queryFileName= phash_fp_jpeg_query.txt
+threshold= 10
+numOfLimit= 20000
+numOfPositive= 10

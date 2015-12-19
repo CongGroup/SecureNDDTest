@@ -1,0 +1,1 @@
+java -jar TestPrototypeInCiphertext.jar ./PCconfigForTestOnCiphertext.txt
