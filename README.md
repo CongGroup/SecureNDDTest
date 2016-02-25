@@ -8,7 +8,7 @@ This is a prototype demonstration that combines LSH (in Hamming distance) and MK
 
 - JDK-1.8
 
-- JPDB-2.0.0: http://gas.dia.unisa.it/projects/jpbc/#.VlvDdvkrKUk
+- JPBC-2.0.0: http://gas.dia.unisa.it/projects/jpbc/#.VlvDdvkrKUk
 
 - OpenCV-2.4.11: http://opencv.org/
 
