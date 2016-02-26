@@ -43,3 +43,5 @@ This is a prototype demonstration that combines LSH (in Hamming distance) and MK
 To easily get our implementation of LSH in Hamming distance, I move some related codes from our project **SecureNDDProtypeTest** into this folder.
 
 Note that you should modify some of the "import package" info due to their original locations have been changed.
+
+If you have any enquiries, please contact Mr. Harry CUI via cuihelei@gmail.com. Thanks.
