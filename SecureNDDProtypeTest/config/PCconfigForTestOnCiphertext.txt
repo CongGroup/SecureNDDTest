@@ -2,7 +2,7 @@ inputPath= C:\Users\Helei\Desktop\nddTest\fingerprint\
 dbFileName= ahash_fp_jpeg.txt
 queryFileName= ahash_fp_jpeg_query.txt
 
-numOfLimit= 200
+numOfLimit= 20000
 numOfRepo= 1
 pairingSettingPath= C:\Users\Helei\Desktop\nddTest\d159.properties
 
