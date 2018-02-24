@@ -118,4 +118,8 @@ public class HammingLSH {
 		
 		return lsh;
 	}
+	
+	public int getL() {
+		return l;
+	}
 }

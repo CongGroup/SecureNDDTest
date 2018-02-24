@@ -2,6 +2,7 @@ package throughput;
 
 import it.unisa.dia.gas.jpbc.Element;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import base.Parameters;
 import base.SecureRecord;
 import base.SecureToken;
 import secure.PRF;
-import secure.PaillierPublicKey;
+//import secure.PaillierPublicKey;
 import util.MyCounter;
 
 public class RepositoryForThroughputTest {
@@ -25,7 +26,7 @@ public class RepositoryForThroughputTest {
 	private Element keyV;
 	
 	// key to encrypt each fingerprint
-	private PaillierPublicKey keyF;
+	private BigInteger keyF;
 	
 	
 	private List<SecureRecord> secureRecords;
@@ -47,7 +48,7 @@ public class RepositoryForThroughputTest {
 		this.encryptedFingerprints = new HashMap<Integer, EncryptedFingerprint>(repo.getEncryptedFingerprints());
 	}
 	
-	public RepositoryForThroughputTest(int id, Parameters params, Element keyV, PaillierPublicKey keyF) {
+	public RepositoryForThroughputTest(int id, Parameters params, Element keyV, BigInteger keyF) {
 		
 		this.id = id;
 		this.params = new Parameters(params);
@@ -258,11 +259,11 @@ public class RepositoryForThroughputTest {
 		this.params = params;
 	}
 
-	public PaillierPublicKey getKeyF() {
+	public BigInteger getKeyF() {
 		return keyF;
 	}
 
-	public void setKeyF(PaillierPublicKey keyF) {
+	public void setKeyF(BigInteger keyF) {
 		this.keyF = keyF;
 	}
 

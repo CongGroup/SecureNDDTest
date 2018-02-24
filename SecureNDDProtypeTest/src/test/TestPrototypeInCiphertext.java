@@ -27,7 +27,8 @@ import base.SysConstant;
 import base.ThirdParty;
 import base.User;
 import it.unisa.dia.gas.jpbc.Element;
-import secure.Paillier;
+import secure.HashElGamal;
+import secure.HashElGamalCiphertext;
 import util.ConfigParser;
 import util.FileTool;
 import util.MyAnalysis;
@@ -340,7 +341,8 @@ public class TestPrototypeInCiphertext {
 						
 						long stOfDec = System.nanoTime();
 						
-						plainFP = Paillier.Dec(item.getCipherFP(), repo.getKeyF(), thirdParty.getKeyPrivate());
+						//plainFP = Paillier.Dec(item.getCipherFP(), repo.getKeyF(), thirdParty.getKeyPrivate());
+						plainFP = HashElGamal.decrypt(params.hashElGamalPara, thirdParty.getKeyPrivate(), item.getCipherFP());
 						
 						long etOfDec = System.nanoTime();
 						
@@ -656,7 +658,8 @@ public class TestPrototypeInCiphertext {
 		for (int i = 0; i < rawRecords.size(); i++) {
 			
 			// encrypt fingerprint
-			BigInteger cipherFP = Paillier.Enc(rawRecords.get(i).getValue(), repo.getKeyF());
+			//BigInteger cipherFP = Paillier.Enc(rawRecords.get(i).getValue(), repo.getKeyF());
+			HashElGamalCiphertext cipherFP = HashElGamal.encrypt(params.hashElGamalPara, repo.getKeyF(), rawRecords.get(i).getValue());
 			
 			repo.getEncryptedFingerprints().put(rawRecords.get(i).getId(),
 					new EncryptedFingerprint(rawRecords.get(i).getName(), cipherFP));

@@ -2,13 +2,14 @@ package base;
 
 import it.unisa.dia.gas.jpbc.Element;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import secure.PRF;
-import secure.PaillierPublicKey;
+//import secure.PaillierPublicKey;
 
 public class Repository {
 
@@ -20,7 +21,7 @@ public class Repository {
 	private Element keyV;
 	
 	// key to encrypt each fingerprint
-	private PaillierPublicKey keyF;
+	private BigInteger keyF;
 	
 	//private List<SecureRecord> secureRecords;
 	// In this version, each "l" is grouped together (in one Map), secureRecords.size() = l
@@ -37,7 +38,7 @@ public class Repository {
 		
 	}
 	
-	public Repository(int id, Parameters params, Element keyV, PaillierPublicKey keyF) {
+	public Repository(int id, Parameters params, Element keyV, BigInteger keyF) {
 		
 		this.id = id;
 		this.params = new Parameters(params);
@@ -245,11 +246,11 @@ public class Repository {
 		this.params = params;
 	}
 
-	public PaillierPublicKey getKeyF() {
+	public BigInteger getKeyF() {
 		return keyF;
 	}
 
-	public void setKeyF(PaillierPublicKey keyF) {
+	public void setKeyF(BigInteger keyF) {
 		this.keyF = keyF;
 	}
 

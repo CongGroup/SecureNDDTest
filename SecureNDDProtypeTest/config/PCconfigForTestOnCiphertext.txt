@@ -1,10 +1,10 @@
-inputPath= C:\Users\Helei\Desktop\nddTest\fingerprint\
-dbFileName= ahash_fp_jpeg.txt
-queryFileName= ahash_fp_jpeg_query.txt
+inputPath= C:\dev\GitHub\NewEncSim\data\
+dbFileName= phash_fp_jpeg.txt
+queryFileName= phash_fp_jpeg_query.txt
 
-numOfLimit= 20000
+numOfLimit= 14
 numOfRepo= 1
-pairingSettingPath= C:\Users\Helei\Desktop\nddTest\d159.properties
+pairingSettingPath= C:\Users\Helei Cui\Documents\GitHub\SecureNDDTest\SecureNDDProtypeTest\config\d159.properties
 
 # parameters for Paillier
 bitLength= 1024
@@ -21,3 +21,12 @@ threshold= 10
 
 # indicate whether uses cached index
 isCached= false
+
+#indexFileName = index
+#hcrtFileName  = hcrt
+#hcrtidFileName= hcrtid
+#fakeDbFileName= phash_fake_fp.txt
+
+numOfThread   = 1
+
+keyHat        = newEncSim

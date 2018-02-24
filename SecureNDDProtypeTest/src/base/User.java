@@ -1,7 +1,9 @@
 package base;
 
+import java.math.BigInteger;
+
 import it.unisa.dia.gas.jpbc.Element;
-import secure.PaillierPublicKey;
+//import secure.PaillierPublicKey;
 
 public class User {
 
@@ -9,11 +11,11 @@ public class User {
 	
 	private Element keyV;
 	
-	private PaillierPublicKey keyPublic;
+	private BigInteger keyPublic;
 	
 	private Parameters params;
 
-	public User(int uid, Parameters params, PaillierPublicKey keyPublic) {
+	public User(int uid, Parameters params, BigInteger keyPublic) {
 		
 		this.uid = uid;
 		
@@ -41,11 +43,11 @@ public class User {
 		this.keyV = keyV;
 	}
 
-	public PaillierPublicKey getKeyPublic() {
+	public BigInteger getKeyPublic() {
 		return keyPublic;
 	}
 
-	public void setKeyPublic(PaillierPublicKey keyPublic) {
+	public void setKeyPublic(BigInteger keyPublic) {
 		this.keyPublic = keyPublic;
 	}
 

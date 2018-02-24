@@ -4,6 +4,7 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.ElementPowPreProcessing;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
+import secure.HashElGamalParameters;
 
 public class Parameters {
 	
@@ -28,6 +29,8 @@ public class Parameters {
 	public int certainty;
 	
 	public HammingLSH lsh;
+	
+	public HashElGamalParameters hashElGamalPara;
 
 	public Parameters(String settingPath, int lshL, int lshDimension, int lshK, int bitLength, int certainty) {
 
@@ -57,6 +60,8 @@ public class Parameters {
 		this.certainty = certainty;
 		
 		this.lsh = new HammingLSH(lshDimension, lshL, lshK);
+		
+		this.hashElGamalPara = new HashElGamalParameters(bitLength, certainty);
 	}
 	
 	public Parameters(Parameters params) {
@@ -86,5 +91,7 @@ public class Parameters {
 		this.certainty = params.certainty;
 		
 		this.lsh = new HammingLSH(params.lshDimension, params.lshL, params.lshK);
+		
+		this.hashElGamalPara = new HashElGamalParameters(params.bitLength, params.certainty);
 	}
 }

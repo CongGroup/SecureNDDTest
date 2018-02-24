@@ -2,9 +2,13 @@ package base;
 
 import java.math.BigInteger;
 
-import secure.Paillier;
-import secure.PaillierPrivateKey;
-import secure.PaillierPublicKey;
+import secure.HashElGamal;
+import secure.HashElGamalKeyPair;
+import secure.HashElGamalParameters;
+
+//import secure.Paillier;
+//import secure.PaillierPrivateKey;
+//import secure.PaillierPublicKey;
 
 /**
  * This party is used to simulate the GC operations.
@@ -14,38 +18,56 @@ import secure.PaillierPublicKey;
  */
 public class ThirdParty {
 	
-	private PaillierPublicKey keyPublic;
+	private BigInteger keyPublic;
 	
-	private PaillierPrivateKey keyPrivate;
+	private BigInteger keyPrivate;
 
 	public ThirdParty(Parameters params) {
 		
 		// generate keyF for fingerprint encryption and its corresponding
 		// private key
-		Paillier paillier = new Paillier(params.bitLength, params.certainty);
+//		Paillier paillier = new Paillier(params.bitLength, params.certainty);
+//
+//		this.keyPublic = new PaillierPublicKey(paillier.getN(), paillier.getG(), paillier.getNsquare(),
+//				params.bitLength);
+//
+//		BigInteger u = paillier.getG().modPow(paillier.getLambda(), paillier.getNsquare()).subtract(BigInteger.ONE)
+//				.divide(paillier.getN()).modInverse(paillier.getN());
+//
+//		this.keyPrivate = new PaillierPrivateKey(paillier.getLambda(), u);
+		
+		HashElGamalKeyPair keyPair = HashElGamal.genKeyPair(params.hashElGamalPara);
 
-		this.keyPublic = new PaillierPublicKey(paillier.getN(), paillier.getG(), paillier.getNsquare(),
-				params.bitLength);
+		this.keyPublic = keyPair.getPk();
 
-		BigInteger u = paillier.getG().modPow(paillier.getLambda(), paillier.getNsquare()).subtract(BigInteger.ONE)
-				.divide(paillier.getN()).modInverse(paillier.getN());
+		this.keyPrivate = keyPair.getSk();
+	}
+	
+	public ThirdParty(HashElGamalParameters hashElGamalPara) {
+		
+		// generate keyF for fingerprint encryption and its corresponding
+		// private key
+		
+		HashElGamalKeyPair keyPair = HashElGamal.genKeyPair(hashElGamalPara);
 
-		this.keyPrivate = new PaillierPrivateKey(paillier.getLambda(), u);
+		this.keyPublic = keyPair.getPk();
+
+		this.keyPrivate = keyPair.getSk();
 	}
 
-	public PaillierPublicKey getKeyPublic() {
+	public BigInteger getKeyPublic() {
 		return keyPublic;
 	}
 
-	public void setKeyPublic(PaillierPublicKey keyPublic) {
+	public void setKeyPublic(BigInteger keyPublic) {
 		this.keyPublic = keyPublic;
 	}
 
-	public PaillierPrivateKey getKeyPrivate() {
+	public BigInteger getKeyPrivate() {
 		return keyPrivate;
 	}
 
-	public void setKeyPrivate(PaillierPrivateKey keyPrivate) {
+	public void setKeyPrivate(BigInteger keyPrivate) {
 		this.keyPrivate = keyPrivate;
 	}
 }

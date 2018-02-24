@@ -171,6 +171,35 @@ public class PRF {
         return digest;
     }
 
+    private static String HMACSHA1(String msg, String key) {
+
+        String digest;
+
+        try {
+
+            Charset asciiCs = Charset.forName("US-ASCII");
+
+            Mac sha1_HMAC = Mac.getInstance("HmacSHA1");
+
+            SecretKey secretKey = new SecretKeySpec(asciiCs.encode(key).array(), "HmacSHA1");
+
+            sha1_HMAC.init(secretKey);
+
+            sha1_HMAC.update(msg.getBytes());
+
+            digest = bytes2Hex(sha1_HMAC.doFinal());
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            digest = null;
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+            digest = null;
+        }
+
+        return digest;
+    }
+
     public static byte[] HMACSHA256(String msg, String key) {
 
         byte[] digest;
@@ -198,5 +227,26 @@ public class PRF {
         }
 
         return digest;
+    }
+    
+    // For SSE testing
+    public static String F(String key, String msg) {
+    	return HMACSHA1(msg, key);
+    }
+    
+    public static String F1(String key, String msg) {
+    	return HMACSHA1(msg+"1", key);
+    }
+    
+    public static String F2(String key, String msg) {
+    	return HMACSHA1(msg+"2", key);
+    }
+    
+    public static String F3(String key, String msg) {
+    	return HMACSHA1(msg+"3", key);
+    }
+    
+    public static String F4(String key, String msg) {
+    	return HMACSHA1(msg+"4", key);
     }
 }

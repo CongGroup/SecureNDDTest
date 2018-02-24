@@ -13,14 +13,17 @@ import base.HammingLSH;
 import base.MyCountDown;
 import base.Parameters;
 import base.RawRecord;
+import base.Repository;
 import base.SecureRecord;
 import base.SecureToken;
 import base.SysConstant;
 import base.ThirdParty;
 import base.User;
 import it.unisa.dia.gas.jpbc.Element;
+import secure.HashElGamal;
+import secure.HashElGamalCiphertext;
 import secure.PRF;
-import secure.Paillier;
+//import secure.Paillier;
 import throughput.RepositoryForThroughputTest;
 import throughput.ThroughputTestThread;
 import util.ConfigParser;
@@ -399,7 +402,8 @@ public class TestThroughput {
 		for (int i = 0; i < rawRecords.size(); i++) {
 			
 			// encrypt fingerprint
-			BigInteger cipherFP = Paillier.Enc(rawRecords.get(i).getValue(), repo.getKeyF());
+			//BigInteger cipherFP = Paillier.Enc(rawRecords.get(i).getValue(), repo.getKeyF());
+			HashElGamalCiphertext cipherFP = HashElGamal.encrypt(params.hashElGamalPara, repo.getKeyF(), rawRecords.get(i).getValue());
 			
 			repo.getEncryptedFingerprints().put(rawRecords.get(i).getId(),
 					new EncryptedFingerprint(rawRecords.get(i).getName(), cipherFP));

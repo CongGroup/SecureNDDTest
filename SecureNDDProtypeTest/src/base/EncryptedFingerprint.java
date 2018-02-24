@@ -2,13 +2,15 @@ package base;
 
 import java.math.BigInteger;
 
+import secure.HashElGamalCiphertext;
+
 public class EncryptedFingerprint {
 
 	private String name;
 	
-	private BigInteger cipherFP;
+	private HashElGamalCiphertext cipherFP;
 	
-	public EncryptedFingerprint(String name, BigInteger cipherFP) {
+	public EncryptedFingerprint(String name, HashElGamalCiphertext cipherFP) {
 		
 		this.name = name;
 		this.cipherFP = cipherFP;
@@ -22,11 +24,11 @@ public class EncryptedFingerprint {
 		this.name = name;
 	}
 
-	public BigInteger getCipherFP() {
+	public HashElGamalCiphertext getCipherFP() {
 		return cipherFP;
 	}
 
-	public void setCipherFP(BigInteger cipherFP) {
+	public void setCipherFP(HashElGamalCiphertext cipherFP) {
 		this.cipherFP = cipherFP;
 	}
 }

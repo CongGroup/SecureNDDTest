@@ -21,3 +21,12 @@ threshold= 10
 
 # indicate whether uses cached index
 isCached= false
+
+#indexFileName = index
+#hcrtFileName  = hcrt
+#hcrtidFileName= hcrtid
+#fakeDbFileName= phash_fake_fp.txt
+
+numOfThread   = 1
+
+keyHat        = newEncSim
